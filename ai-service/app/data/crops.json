@@ -1,0 +1,247 @@
+{
+  "tomato": {
+    "name": "tomato",
+    "display_name": "番茄",
+    "category": "蔬菜",
+    "total_growth_days": 120,
+    "description": "番茄是全球广泛种植的蔬菜作物，喜温喜光。",
+    "stages": [
+      {
+        "name": "苗期",
+        "duration_days": 25,
+        "params": {
+          "temperature": {"min": 20, "max": 28, "unit": "°C"},
+          "humidity": {"min": 60, "max": 75, "unit": "%"},
+          "light": {"min": 15000, "max": 25000, "unit": "lux"},
+          "co2": {"min": 400, "max": 800, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "开花期",
+        "duration_days": 30,
+        "params": {
+          "temperature": {"min": 22, "max": 30, "unit": "°C"},
+          "humidity": {"min": 50, "max": 70, "unit": "%"},
+          "light": {"min": 20000, "max": 35000, "unit": "lux"},
+          "co2": {"min": 600, "max": 1000, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "结果期",
+        "duration_days": 40,
+        "params": {
+          "temperature": {"min": 22, "max": 32, "unit": "°C"},
+          "humidity": {"min": 55, "max": 70, "unit": "%"},
+          "light": {"min": 25000, "max": 40000, "unit": "lux"},
+          "co2": {"min": 800, "max": 1200, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "采收期",
+        "duration_days": 25,
+        "params": {
+          "temperature": {"min": 18, "max": 28, "unit": "°C"},
+          "humidity": {"min": 50, "max": 65, "unit": "%"},
+          "light": {"min": 20000, "max": 30000, "unit": "lux"},
+          "co2": {"min": 400, "max": 800, "unit": "ppm"}
+        }
+      }
+    ]
+  },
+  "cucumber": {
+    "name": "cucumber",
+    "display_name": "黄瓜",
+    "category": "蔬菜",
+    "total_growth_days": 90,
+    "description": "黄瓜喜温湿环境，适合温室栽培。",
+    "stages": [
+      {
+        "name": "苗期",
+        "duration_days": 20,
+        "params": {
+          "temperature": {"min": 22, "max": 30, "unit": "°C"},
+          "humidity": {"min": 65, "max": 80, "unit": "%"},
+          "light": {"min": 15000, "max": 25000, "unit": "lux"},
+          "co2": {"min": 400, "max": 800, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "开花期",
+        "duration_days": 20,
+        "params": {
+          "temperature": {"min": 24, "max": 32, "unit": "°C"},
+          "humidity": {"min": 60, "max": 75, "unit": "%"},
+          "light": {"min": 20000, "max": 35000, "unit": "lux"},
+          "co2": {"min": 600, "max": 1000, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "结果期",
+        "duration_days": 35,
+        "params": {
+          "temperature": {"min": 24, "max": 34, "unit": "°C"},
+          "humidity": {"min": 60, "max": 80, "unit": "%"},
+          "light": {"min": 25000, "max": 40000, "unit": "lux"},
+          "co2": {"min": 800, "max": 1200, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "采收期",
+        "duration_days": 15,
+        "params": {
+          "temperature": {"min": 20, "max": 30, "unit": "°C"},
+          "humidity": {"min": 55, "max": 70, "unit": "%"},
+          "light": {"min": 20000, "max": 30000, "unit": "lux"},
+          "co2": {"min": 400, "max": 800, "unit": "ppm"}
+        }
+      }
+    ]
+  },
+  "pepper": {
+    "name": "pepper",
+    "display_name": "辣椒",
+    "category": "蔬菜",
+    "total_growth_days": 110,
+    "description": "辣椒喜温怕霜，适合温暖环境生长。",
+    "stages": [
+      {
+        "name": "苗期",
+        "duration_days": 30,
+        "params": {
+          "temperature": {"min": 20, "max": 28, "unit": "°C"},
+          "humidity": {"min": 60, "max": 75, "unit": "%"},
+          "light": {"min": 15000, "max": 25000, "unit": "lux"},
+          "co2": {"min": 400, "max": 800, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "开花期",
+        "duration_days": 25,
+        "params": {
+          "temperature": {"min": 22, "max": 30, "unit": "°C"},
+          "humidity": {"min": 55, "max": 70, "unit": "%"},
+          "light": {"min": 20000, "max": 35000, "unit": "lux"},
+          "co2": {"min": 600, "max": 1000, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "结果期",
+        "duration_days": 35,
+        "params": {
+          "temperature": {"min": 24, "max": 32, "unit": "°C"},
+          "humidity": {"min": 55, "max": 70, "unit": "%"},
+          "light": {"min": 25000, "max": 40000, "unit": "lux"},
+          "co2": {"min": 800, "max": 1200, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "采收期",
+        "duration_days": 20,
+        "params": {
+          "temperature": {"min": 18, "max": 28, "unit": "°C"},
+          "humidity": {"min": 50, "max": 65, "unit": "%"},
+          "light": {"min": 20000, "max": 30000, "unit": "lux"},
+          "co2": {"min": 400, "max": 800, "unit": "ppm"}
+        }
+      }
+    ]
+  },
+  "strawberry": {
+    "name": "strawberry",
+    "display_name": "草莓",
+    "category": "水果",
+    "total_growth_days": 100,
+    "description": "草莓喜冷凉环境，适合设施栽培。",
+    "stages": [
+      {
+        "name": "苗期",
+        "duration_days": 20,
+        "params": {
+          "temperature": {"min": 15, "max": 25, "unit": "°C"},
+          "humidity": {"min": 60, "max": 75, "unit": "%"},
+          "light": {"min": 15000, "max": 25000, "unit": "lux"},
+          "co2": {"min": 400, "max": 800, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "开花期",
+        "duration_days": 25,
+        "params": {
+          "temperature": {"min": 18, "max": 26, "unit": "°C"},
+          "humidity": {"min": 55, "max": 70, "unit": "%"},
+          "light": {"min": 20000, "max": 30000, "unit": "lux"},
+          "co2": {"min": 600, "max": 1000, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "结果期",
+        "duration_days": 35,
+        "params": {
+          "temperature": {"min": 18, "max": 28, "unit": "°C"},
+          "humidity": {"min": 60, "max": 75, "unit": "%"},
+          "light": {"min": 20000, "max": 35000, "unit": "lux"},
+          "co2": {"min": 600, "max": 1000, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "采收期",
+        "duration_days": 20,
+        "params": {
+          "temperature": {"min": 15, "max": 24, "unit": "°C"},
+          "humidity": {"min": 55, "max": 70, "unit": "%"},
+          "light": {"min": 15000, "max": 25000, "unit": "lux"},
+          "co2": {"min": 400, "max": 800, "unit": "ppm"}
+        }
+      }
+    ]
+  },
+  "watermelon": {
+    "name": "watermelon",
+    "display_name": "西瓜",
+    "category": "水果",
+    "total_growth_days": 95,
+    "description": "西瓜喜高温干燥环境，需充足光照。",
+    "stages": [
+      {
+        "name": "苗期",
+        "duration_days": 15,
+        "params": {
+          "temperature": {"min": 25, "max": 32, "unit": "°C"},
+          "humidity": {"min": 55, "max": 70, "unit": "%"},
+          "light": {"min": 20000, "max": 30000, "unit": "lux"},
+          "co2": {"min": 400, "max": 800, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "开花期",
+        "duration_days": 20,
+        "params": {
+          "temperature": {"min": 26, "max": 35, "unit": "°C"},
+          "humidity": {"min": 50, "max": 65, "unit": "%"},
+          "light": {"min": 25000, "max": 40000, "unit": "lux"},
+          "co2": {"min": 600, "max": 1000, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "结果期",
+        "duration_days": 40,
+        "params": {
+          "temperature": {"min": 26, "max": 36, "unit": "°C"},
+          "humidity": {"min": 50, "max": 65, "unit": "%"},
+          "light": {"min": 30000, "max": 45000, "unit": "lux"},
+          "co2": {"min": 800, "max": 1200, "unit": "ppm"}
+        }
+      },
+      {
+        "name": "采收期",
+        "duration_days": 20,
+        "params": {
+          "temperature": {"min": 22, "max": 32, "unit": "°C"},
+          "humidity": {"min": 45, "max": 60, "unit": "%"},
+          "light": {"min": 25000, "max": 35000, "unit": "lux"},
+          "co2": {"min": 400, "max": 800, "unit": "ppm"}
+        }
+      }
+    ]
+  }
+}

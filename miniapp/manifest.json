@@ -1,0 +1,35 @@
+{
+  "name": "智慧大棚",
+  "appid": "",
+  "description": "农业大棚自动化控制系统 - 农户端",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false,
+      "es6": true,
+      "enhance": true,
+      "postcss": true,
+      "minified": true
+    },
+    "usingComponents": true,
+    "permission": {
+      "scope.userLocation": {
+        "desc": "获取位置信息用于定位农场"
+      }
+    },
+    "requiredPrivateInfos": ["chooseAddress", "getLocation"]
+  },
+  "h5": {
+    "title": "智慧大棚",
+    "router": {
+      "mode": "hash"
+    },
+    "devServer": {
+      "port": 8080,
+      "disableHostCheck": true
+    }
+  }
+}

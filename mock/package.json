@@ -1,0 +1,17 @@
+{
+  "name": "esp32-mock-data-generator",
+  "version": "1.0.0",
+  "description": "Mock data generator for ESP32 sensor devices",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "status": "node device-status.js"
+  },
+  "dependencies": {
+    "mqtt": "^5.3.0",
+    "uuid": "^9.0.0"
+  },
+  "keywords": ["mqtt", "iot", "mock", "sensor", "esp32"],
+  "author": "",
+  "license": "MIT"
+}
