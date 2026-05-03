@@ -1,8 +1,8 @@
-# 农业大棚自动化控制系统
+# Greenhouse Agent - 农业大棚自动化控制系统
 
 [English](README.md)
 
-一套商业级农业大棚物联网监控平台，支持实时传感器数据采集、智能控制规则、AI参数推荐和多租户管理。
+一套基于AI Agent的智能农业大棚物联网监控平台，支持实时传感器数据采集、智能控制规则、AI参数推荐和多租户管理。
 
 ## 功能特性
 
@@ -109,8 +109,8 @@ greenhouse/
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/your-org/greenhouse.git
-cd greenhouse
+git clone https://github.com/HyperAndy/greenhouse-agent.git
+cd greenhouse-agent
 cp .env.example .env
 ```
 

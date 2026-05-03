@@ -1,8 +1,8 @@
-# Greenhouse Automation System
+# Greenhouse Agent
 
 [中文文档](README_CN.md)
 
-A commercial-grade IoT platform for automated greenhouse monitoring and control. Provides real-time sensor data collection, intelligent control rules, AI-powered recommendations, and multi-tenant management.
+An intelligent IoT platform for automated greenhouse monitoring and control, powered by AI agents. Provides real-time sensor data collection, intelligent control rules, AI-powered recommendations, and multi-tenant management.
 
 ## Features
 
@@ -110,8 +110,8 @@ greenhouse/
 ### 1. Clone & Configure
 
 ```bash
-git clone https://github.com/your-org/greenhouse.git
-cd greenhouse
+git clone https://github.com/HyperAndy/greenhouse-agent.git
+cd greenhouse-agent
 cp .env.example .env
 ```
 

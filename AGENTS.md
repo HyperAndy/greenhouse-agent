@@ -1,4 +1,4 @@
-# AGENTS.md - 项目开发指南
+# AGENTS.md - Greenhouse Agent 项目开发指南
 
 本文档为AI助手和开发者提供项目上下文、技术栈和开发规范。
 
@@ -6,11 +6,13 @@
 
 ## 项目概述
 
-农业大棚自动化控制系统，支持实时传感器监测、智能控制、AI推荐、多端展示。
+Greenhouse Agent - 基于AI Agent的智能农业大棚自动化控制系统，支持实时传感器监测、智能控制、AI推荐、多端展示。
 
-**项目类型：** IoT物联网平台
+**项目名称：** greenhouse-agent
+**项目类型：** IoT物联网平台 + AI Agent
 **开发语言：** TypeScript + Python
 **部署方式：** Docker Compose
+**GitHub仓库：** https://github.com/HyperAndy/greenhouse-agent
 
 ---
 
@@ -57,7 +59,7 @@
 ## 项目结构
 
 ```
-mimo-test/
+greenhouse-agent/
 ├── backend/                # NestJS后端
 │   ├── src/
 │   │   ├── common/         # 公共模块
