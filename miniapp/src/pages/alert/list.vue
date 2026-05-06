@@ -80,8 +80,8 @@ const loadData = async () => {
       getAlertList(),
       getAlertStats()
     ])
-    alerts.value = alertRes.data || []
-    stats.value = statsRes.data || {}
+    alerts.value = alertRes || []
+    stats.value = statsRes || {}
   } catch (error) {
     console.error('加载告警数据失败', error)
     uni.showToast({ title: '加载失败', icon: 'none' })

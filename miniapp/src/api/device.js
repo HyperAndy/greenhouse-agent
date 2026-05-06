@@ -1,11 +1,9 @@
 import { get, post, put } from './request'
 
-export const getDeviceList = (greenhouseId) => get(`/device/list`, { greenhouseId })
+export const getDeviceList = (greenhouseId) => get('/devices', { greenhouseId })
 
-export const getDeviceDetail = (id) => get(`/device/${id}`)
+export const getDeviceDetail = (id) => get(`/devices/${id}`)
 
-export const controlDevice = (id, action) => post(`/device/${id}/control`, { action })
+export const controlDevice = (data) => post('/control', data)
 
-export const batchControl = (data) => post('/device/batch-control', data)
-
-export const getDeviceStatus = (id) => get(`/device/${id}/status`)
+export const batchControl = (data) => post('/control/batch', data)

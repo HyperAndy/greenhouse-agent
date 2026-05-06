@@ -49,24 +49,24 @@
         <view class="greenhouse-card__data">
           <view class="data-item">
             <text class="data-icon">🌡️</text>
-            <text class="data-value">{{ formatTemp(item.temperature) }}</text>
+            <text class="data-value">{{ item.sensorData ? formatTemp(item.sensorData.temp) : '--' }}</text>
           </view>
           <view class="data-item">
             <text class="data-icon">💧</text>
-            <text class="data-value">{{ formatHumidity(item.humidity) }}</text>
+            <text class="data-value">{{ item.sensorData ? formatHumi(item.sensorData.humi) : '--' }}</text>
           </view>
           <view class="data-item">
             <text class="data-icon">☀️</text>
-            <text class="data-value">{{ formatLight(item.light) }}</text>
+            <text class="data-value">{{ item.sensorData ? formatLux(item.sensorData.light) : '--' }}</text>
           </view>
         </view>
 
         <view class="greenhouse-card__footer">
           <view class="device-status">
-            <view class="status-dot" :class="{ 'status-dot--online': item.deviceOnline }"></view>
-            <text>{{ item.deviceOnline ? '设备在线' : '设备离线' }}</text>
+            <view class="status-dot" :class="{ 'status-dot--online': item.sensorData }"></view>
+            <text>{{ item.sensorData ? '设备在线' : '设备离线' }}</text>
           </view>
-          <text class="text-gray">更新于 {{ formatTime(item.updateTime) }}</text>
+          <text class="text-gray">{{ item.cropType || '未设置作物' }}</text>
         </view>
       </view>
     </view>
@@ -75,8 +75,10 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { getGreenhouseList } from '../../api/farm'
+import { onPullDownRefresh } from '@dcloudio/uni-app'
+import { getFarmList, getGreenhouseList } from '../../api/farm'
 import { getAlertStats } from '../../api/alert'
+import { getSensorData } from '../../api/sensor'
 import { formatTemperature, formatHumidity, formatLight, formatTime } from '../../utils/format'
 
 const loading = ref(false)
@@ -85,22 +87,37 @@ const greenhouseList = ref([])
 const alertCount = ref(0)
 
 const onlineCount = computed(() => {
-  return greenhouseList.value.filter(item => item.deviceOnline).length
+  return greenhouseList.value.filter(item => item.sensorData).length
 })
 
 const formatTemp = (val) => formatTemperature(val)
-const formatHumidity = (val) => formatHumidity(val)
-const formatLight = (val) => formatLight(val)
+const formatHumi = (val) => formatHumidity(val)
+const formatLux = (val) => formatLight(val)
 
 const loadData = async () => {
   loading.value = true
   try {
-    const [greenhouseRes, alertRes] = await Promise.all([
-      getGreenhouseList(),
-      getAlertStats()
-    ])
-    greenhouseList.value = greenhouseRes.data || []
-    alertCount.value = alertRes.data?.unconfirmed || 0
+    const farmRes = await getFarmList()
+    const farms = farmRes || []
+    if (farms.length > 0) {
+      farmName.value = farms[0].name || '我的农场'
+      const farmId = farms[0].id
+      const greenhouseRes = await getGreenhouseList(farmId)
+      const greenhouses = greenhouseRes || []
+      
+      // 加载每个大棚的传感器数据
+      const list = []
+      for (const gh of greenhouses) {
+        try {
+          const sensorRes = await getSensorData(gh.id)
+          const sensor = Array.isArray(sensorRes) ? sensorRes[0] : sensorRes
+          list.push({ ...gh, sensorData: sensor || null })
+        } catch {
+          list.push({ ...gh, sensorData: null })
+        }
+      }
+      greenhouseList.value = list
+    }
   } catch (error) {
     console.error('加载数据失败', error)
   } finally {

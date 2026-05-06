@@ -19,14 +19,14 @@
         <sensor-card
           icon="🌡️"
           label="空气温度"
-          :value="sensorData.temperature"
+          :value="sensorData.temp"
           :formatter="formatTemp"
           :warningRange="[15, 35]"
         />
         <sensor-card
           icon="💧"
           label="空气湿度"
-          :value="sensorData.humidity"
+          :value="sensorData.humi"
           :formatter="formatHum"
           :warningRange="[40, 80]"
         />
@@ -46,7 +46,7 @@
         <sensor-card
           icon="🌱"
           label="土壤湿度"
-          :value="sensorData.soilMoisture"
+          :value="sensorData.soil_moisture?.[0]"
           :formatter="formatSoil"
           :warningRange="[30, 70]"
         />
@@ -133,19 +133,19 @@ const loadData = async () => {
       getSensorData(greenhouseId.value),
       getDeviceList(greenhouseId.value)
     ])
-    greenhouse.value = greenhouseRes.data || {}
-    sensorData.value = sensorRes.data || {}
-    devices.value = deviceRes.data || []
+    greenhouse.value = greenhouseRes || {}
+    sensorData.value = Array.isArray(sensorRes) ? sensorRes[0] || {} : sensorRes || {}
+    devices.value = deviceRes || []
   } catch (error) {
     console.error('加载数据失败', error)
     uni.showToast({ title: '加载失败', icon: 'none' })
   }
 }
 
-const handleDeviceToggle = async ({ deviceId, action }) => {
+const handleDeviceToggle = async ({ deviceId, channel, state }) => {
   try {
-    await controlDevice(deviceId, action)
-    uni.showToast({ title: action === 'on' ? '已开启' : '已关闭', icon: 'success' })
+    await controlDevice({ deviceId, channel, state })
+    uni.showToast({ title: state ? '已开启' : '已关闭', icon: 'success' })
     loadData()
   } catch (error) {
     uni.showToast({ title: '控制失败', icon: 'none' })
@@ -157,7 +157,7 @@ const goToControl = () => {
 }
 
 const goToAlert = () => {
-  uni.navigateTo({ url: `/pages/alert/list?greenhouseId=${greenhouseId.value}` })
+  uni.switchTab({ url: `/pages/alert/list` })
 }
 
 const goToHistory = () => {

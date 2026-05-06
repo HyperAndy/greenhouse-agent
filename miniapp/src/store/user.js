@@ -7,17 +7,16 @@ export const useUserStore = defineStore('user', () => {
   const userInfo = ref(uni.getStorageSync('userInfo') || null)
   
   const isLoggedIn = computed(() => !!token.value)
-  const username = computed(() => userInfo.value?.username || '')
+  const username = computed(() => userInfo.value?.name || '')
   const phone = computed(() => userInfo.value?.phone || '')
-  const avatar = computed(() => userInfo.value?.avatar || '')
   
   const login = async (loginData) => {
     try {
       const res = await loginApi(loginData)
-      token.value = res.data.token
-      userInfo.value = res.data.userInfo
-      uni.setStorageSync('token', res.data.token)
-      uni.setStorageSync('userInfo', res.data.userInfo)
+      token.value = res.access_token
+      userInfo.value = res.user
+      uni.setStorageSync('token', res.access_token)
+      uni.setStorageSync('userInfo', res.user)
       return res
     } catch (error) {
       throw error
@@ -27,9 +26,9 @@ export const useUserStore = defineStore('user', () => {
   const fetchUserInfo = async () => {
     try {
       const res = await getUserInfo()
-      userInfo.value = res.data
-      uni.setStorageSync('userInfo', res.data)
-      return res.data
+      userInfo.value = res
+      uni.setStorageSync('userInfo', res)
+      return res
     } catch (error) {
       throw error
     }
@@ -55,7 +54,6 @@ export const useUserStore = defineStore('user', () => {
     isLoggedIn,
     username,
     phone,
-    avatar,
     login,
     fetchUserInfo,
     logout

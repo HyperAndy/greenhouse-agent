@@ -5,9 +5,9 @@ const BROKER_URL = 'mqtt://localhost:1883';
 const client = mqtt.connect(BROKER_URL);
 
 const devices = [
-  { id: 'device-001', greenhouse: 'gh-001', name: 'Greenhouse-1' },
-  { id: 'device-002', greenhouse: 'gh-002', name: 'Greenhouse-2' },
-  { id: 'device-003', greenhouse: 'gh-003', name: 'Greenhouse-3' }
+  { id: 'device-001', greenhouse: 'b0400fbb-da7f-4e2e-b436-39318b085eba', name: 'Greenhouse-1' },
+  { id: 'device-002', greenhouse: '0ec09ab6-1aa5-4257-9b1e-1b8e69503102', name: 'Greenhouse-2' },
+  { id: 'device-003', greenhouse: 'be7d873d-e19e-4370-aea0-b9f69bebbc00', name: 'Greenhouse-3' }
 ];
 
 const sensorStates = devices.map(() => ({

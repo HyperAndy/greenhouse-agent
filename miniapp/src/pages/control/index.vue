@@ -89,10 +89,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getDeviceList, controlDevice, batchControl } from '../../api/device'
-import { getGreenhouseDetail } from '../../api/farm'
+import { getFarmList, getGreenhouseList } from '../../api/farm'
 
 const greenhouseId = ref('')
-const greenhouseName = ref('')
+const greenhouseName = ref('设备控制')
 const devices = ref([])
 const loading = ref(false)
 const controlling = ref(false)
@@ -126,12 +126,19 @@ const getDeviceTypeName = (type) => deviceTypeNames[type] || '设备'
 const loadData = async () => {
   loading.value = true
   try {
-    const [greenhouseRes, deviceRes] = await Promise.all([
-      getGreenhouseDetail(greenhouseId.value),
-      getDeviceList(greenhouseId.value)
-    ])
-    greenhouseName.value = greenhouseRes.data?.name || '大棚'
-    devices.value = deviceRes.data || []
+    const farmRes = await getFarmList()
+    const farms = farmRes || []
+    if (farms.length > 0) {
+      const farmId = farms[0].id
+      const ghRes = await getGreenhouseList(farmId)
+      const greenhouses = ghRes || []
+      if (greenhouses.length > 0) {
+        greenhouseId.value = greenhouses[0].id
+        greenhouseName.value = greenhouses[0].name || '设备控制'
+        const deviceRes = await getDeviceList(greenhouses[0].id)
+        devices.value = deviceRes || []
+      }
+    }
   } catch (error) {
     console.error('加载数据失败', error)
     uni.showToast({ title: '加载失败', icon: 'none' })
@@ -160,12 +167,15 @@ const confirmAction = async () => {
 
   try {
     if (pendingAction.value.type === 'single') {
-      await controlDevice(pendingAction.value.deviceId, pendingAction.value.action)
+      await controlDevice({
+        deviceId: pendingAction.value.deviceId,
+        state: pendingAction.value.action === 'on'
+      })
       uni.showToast({ title: '操作成功', icon: 'success' })
     } else {
       await batchControl({
         greenhouseId: greenhouseId.value,
-        action: pendingAction.value.action
+        state: pendingAction.value.action === 'on'
       })
       uni.showToast({ title: '批量操作成功', icon: 'success' })
     }
@@ -179,12 +189,7 @@ const confirmAction = async () => {
 }
 
 onMounted(() => {
-  const pages = getCurrentPages()
-  const currentPage = pages[pages.length - 1]
-  greenhouseId.value = currentPage.options?.id || ''
-  if (greenhouseId.value) {
-    loadData()
-  }
+  loadData()
 })
 </script>
 

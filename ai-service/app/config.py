@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = True
 
-    DATABASE_URL: str = "postgresql+asyncpg://postgres:greenhouse123@localhost:5432/greenhouse"
+    DATABASE_URL: str = ""
     REDIS_URL: str = "redis://localhost:6379/0"
 
     WEATHER_API_KEY: str = ""

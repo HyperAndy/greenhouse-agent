@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/api'
+const BASE_URL = 'http://localhost:3000'
 
 const request = (options) => {
   return new Promise((resolve, reject) => {
@@ -19,16 +19,8 @@ const request = (options) => {
       data: options.data,
       header,
       success: (res) => {
-        if (res.statusCode === 200) {
-          if (res.data.code === 0 || res.data.code === 200) {
-            resolve(res.data)
-          } else {
-            uni.showToast({
-              title: res.data.message || '请求失败',
-              icon: 'none'
-            })
-            reject(res.data)
-          }
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(res.data)
         } else if (res.statusCode === 401) {
           uni.removeStorageSync('token')
           uni.removeStorageSync('userInfo')
@@ -36,10 +28,10 @@ const request = (options) => {
           reject(new Error('登录已过期'))
         } else {
           uni.showToast({
-            title: `服务器错误: ${res.statusCode}`,
+            title: res.data?.message || `请求失败: ${res.statusCode}`,
             icon: 'none'
           })
-          reject(new Error(`HTTP ${res.statusCode}`))
+          reject(new Error(res.data?.message || `HTTP ${res.statusCode}`))
         }
       },
       fail: (err) => {

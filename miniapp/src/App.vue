@@ -2,25 +2,12 @@
 export default {
   onLaunch() {
     console.log('App Launch')
-    this.checkLogin()
   },
   onShow() {
     console.log('App Show')
   },
   onHide() {
     console.log('App Hide')
-  },
-  methods: {
-    checkLogin() {
-      const token = uni.getStorageSync('token')
-      if (!token) {
-        const pages = getCurrentPages()
-        const currentPage = pages[pages.length - 1]
-        if (currentPage && currentPage.route !== 'pages/login/index') {
-          uni.reLaunch({ url: '/pages/login/index' })
-        }
-      }
-    }
   }
 }
 </script>
